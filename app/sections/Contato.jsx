@@ -2,11 +2,14 @@
 
 import { useState } from 'react'
 import { supabase } from '@/app/lib/supabase'
+import { useReveal } from '@/app/hooks/useReveal'
 
 export default function Contato() {
   const [enviado, setEnviado] = useState(false)
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({ nome: '', email: '', mensagem: '' })
+
+  useReveal()
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -29,14 +32,13 @@ export default function Contato() {
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
+          <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
             <div>
               <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '16px', display: 'block' }}>Onde estamos</span>
               <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: '#2E2B26', letterSpacing: '-1px' }}>
                 Vem pra <em style={{ color: '#F5A623', fontWeight: 400 }}>Obah!</em>
               </h2>
             </div>
-
             <div>
               <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '8px', display: 'block' }}>Endereço</span>
               <p style={{ fontSize: '16px', fontWeight: 300, color: '#2E2B26', lineHeight: 1.6 }}>
@@ -44,7 +46,6 @@ export default function Contato() {
                 São Gonçalo, RJ — CEP 24435-005
               </p>
             </div>
-
             <div>
               <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '12px', display: 'block' }}>Horário</span>
               {[
@@ -62,7 +63,6 @@ export default function Contato() {
                 </div>
               ))}
             </div>
-
             <div>
               <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '12px', display: 'block' }}>Redes sociais</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -70,7 +70,6 @@ export default function Contato() {
                 <a href="https://wa.me/5521993753021" target="_blank" style={{ fontSize: '16px', fontWeight: 300, color: '#2E2B26', textDecoration: 'none' }}>(21) 99375-3021</a>
               </div>
             </div>
-
             <div>
               <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '12px', display: 'block' }}>Diferenciais</span>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -81,12 +80,11 @@ export default function Contato() {
             </div>
           </div>
 
-          <div>
+          <div className="reveal reveal-delay-1">
             <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '16px', display: 'block' }}>Fale conosco</span>
             <h3 style={{ fontFamily: 'Georgia, serif', fontSize: '28px', fontWeight: 700, color: '#2E2B26', marginBottom: '28px' }}>
               Manda uma <em style={{ color: '#F5A623', fontWeight: 400 }}>mensagem</em>
             </h3>
-
             {enviado ? (
               <div style={{ textAlign: 'center', padding: '48px 24px' }}>
                 <div style={{ fontSize: '32px', marginBottom: '12px' }}>✓</div>

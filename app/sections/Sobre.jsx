@@ -1,10 +1,16 @@
+'use client'
+
+import { useReveal } from '@/app/hooks/useReveal'
+
 export default function Sobre() {
+  useReveal()
+
   return (
     <section id="sobre" style={{ padding: '100px 40px', background: '#FBF7EF' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
 
-          <div style={{ position: 'relative' }}>
+          <div className="reveal" style={{ position: 'relative' }}>
             <div style={{
               width: '100%', aspectRatio: '4/5',
               background: 'linear-gradient(160deg, #FDE8B8 0%, #F2EBD9 100%)',
@@ -24,7 +30,7 @@ export default function Sobre() {
             </div>
           </div>
 
-          <div style={{ paddingRight: '16px' }}>
+          <div className="reveal reveal-delay-1" style={{ paddingRight: '16px' }}>
             <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '16px', display: 'block' }}>
               Nossa história
             </span>

@@ -2,9 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/app/lib/supabase'
+import { useReveal } from '@/app/hooks/useReveal'
+
 export default function Eventos() {
   const [eventos, setEventos] = useState([])
   const [loading, setLoading] = useState(true)
+
+  useReveal()
 
   useEffect(() => {
     async function fetchEventos() {
@@ -25,7 +29,7 @@ export default function Eventos() {
     <section id="eventos" style={{ padding: '100px 40px', background: '#fff' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '56px', flexWrap: 'wrap', gap: '24px' }}>
+        <div className="reveal" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '56px', flexWrap: 'wrap', gap: '24px' }}>
           <div>
             <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '16px', display: 'block' }}>
               Agenda
@@ -44,7 +48,7 @@ export default function Eventos() {
         )}
 
         {!loading && eventos.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '80px 24px', color: '#8C8278' }}>
+          <div className="reveal" style={{ textAlign: 'center', padding: '80px 24px', color: '#8C8278' }}>
             <div style={{ fontSize: '40px', marginBottom: '12px' }}>🎶</div>
             <p style={{ fontSize: '16px' }}>Em breve novos eventos por aqui.</p>
             <p style={{ fontSize: '14px', marginTop: '4px' }}>Siga nossas redes para não perder nada!</p>
@@ -53,13 +57,13 @@ export default function Eventos() {
 
         {!loading && eventos.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2px' }}>
-            {eventos.map(ev => {
+            {eventos.map((ev, i) => {
               const menorPreco = ev.ticket_types?.length
                 ? Math.min(...ev.ticket_types.map(t => t.price))
                 : null
 
               return (
-                <div key={ev.id} style={{ background: '#FBF7EF', overflow: 'hidden' }}>
+                <div key={ev.id} className={`reveal reveal-delay-${Math.min(i + 1, 3)}`} style={{ background: '#FBF7EF', overflow: 'hidden' }}>
                   {ev.image_url
                     ? <img src={ev.image_url} alt={ev.name} style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }} />
                     : (
@@ -95,6 +99,7 @@ export default function Eventos() {
             })}
           </div>
         )}
+
       </div>
     </section>
   )

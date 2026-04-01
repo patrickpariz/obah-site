@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { supabase } from '@/app/lib/supabase'
+import { useReveal } from '@/app/hooks/useReveal'
 
 export default function Comemore() {
   const [enviado, setEnviado] = useState(false)
@@ -10,6 +11,8 @@ export default function Comemore() {
     nome: '', whatsapp: '', tipo: '', data: '', convidados: '', mensagem: ''
   })
 
+  useReveal()
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
@@ -17,13 +20,11 @@ export default function Comemore() {
   async function handleSubmit(e) {
     e.preventDefault()
     setLoading(true)
-
     await supabase.from('messages').insert([{
       name: form.nome,
       email: form.whatsapp,
       message: `Tipo: ${form.tipo} | Data: ${form.data} | Convidados: ${form.convidados} | ${form.mensagem}`,
     }])
-
     setLoading(false)
     setEnviado(true)
   }
@@ -47,7 +48,7 @@ export default function Comemore() {
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
-          <div>
+          <div className="reveal">
             <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(245,166,35,0.8)', marginBottom: '16px', display: 'block' }}>
               Eventos privados
             </span>
@@ -72,7 +73,7 @@ export default function Comemore() {
             </div>
           </div>
 
-          <div>
+          <div className="reveal reveal-delay-1">
             {enviado ? (
               <div style={{ textAlign: 'center', padding: '60px 24px' }}>
                 <div style={{ fontSize: '32px', marginBottom: '12px' }}>✓</div>
@@ -81,7 +82,6 @@ export default function Comemore() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={labelStyle}>Seu nome</label>
@@ -92,7 +92,6 @@ export default function Comemore() {
                     <input name="whatsapp" type="tel" placeholder="(21) 99999-0000" required style={inputStyle} value={form.whatsapp} onChange={handleChange} />
                   </div>
                 </div>
-
                 <div>
                   <label style={labelStyle}>Tipo de evento</label>
                   <select name="tipo" required style={inputStyle} value={form.tipo} onChange={handleChange}>
@@ -102,7 +101,6 @@ export default function Comemore() {
                     ))}
                   </select>
                 </div>
-
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={labelStyle}>Data do evento</label>
@@ -113,22 +111,13 @@ export default function Comemore() {
                     <input name="convidados" type="number" placeholder="ex: 80" min="10" style={inputStyle} value={form.convidados} onChange={handleChange} />
                   </div>
                 </div>
-
                 <div>
                   <label style={labelStyle}>Mensagem</label>
                   <textarea name="mensagem" placeholder="Conte um pouco mais sobre o seu evento..." rows={4} style={{ ...inputStyle, resize: 'vertical' }} value={form.mensagem} onChange={handleChange} />
                 </div>
-
-                <button type="submit" disabled={loading} style={{
-                  width: '100%', background: loading ? '#C8841A' : '#F5A623',
-                  color: '#fff', border: 'none', padding: '16px',
-                  fontSize: '13px', fontWeight: 500, letterSpacing: '0.1em',
-                  textTransform: 'uppercase', fontFamily: 'inherit',
-                  borderRadius: '2px', cursor: loading ? 'not-allowed' : 'pointer'
-                }}>
+                <button type="submit" disabled={loading} style={{ width: '100%', background: loading ? '#C8841A' : '#F5A623', color: '#fff', border: 'none', padding: '16px', fontSize: '13px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', fontFamily: 'inherit', borderRadius: '2px', cursor: loading ? 'not-allowed' : 'pointer' }}>
                   {loading ? 'Enviando...' : 'Solicitar orçamento'}
                 </button>
-
               </form>
             )}
           </div>
