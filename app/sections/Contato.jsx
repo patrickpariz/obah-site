@@ -140,3 +140,5 @@ export default function Contato() {
 
         </div>
       </div>
+        </section>
+}
