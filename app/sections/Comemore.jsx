@@ -1,13 +1,43 @@
 'use client'
 
 import { useState } from 'react'
+import { supabase } from '@/app/lib/supabase'
 
 export default function Comemore() {
   const [enviado, setEnviado] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [form, setForm] = useState({
+    nome: '', whatsapp: '', tipo: '', data: '', convidados: '', mensagem: ''
+  })
 
-  function handleSubmit(e) {
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault()
+    setLoading(true)
+
+    await supabase.from('messages').insert([{
+      name: form.nome,
+      email: form.whatsapp,
+      message: `Tipo: ${form.tipo} | Data: ${form.data} | Convidados: ${form.convidados} | ${form.mensagem}`,
+    }])
+
+    setLoading(false)
     setEnviado(true)
+  }
+
+  const inputStyle = {
+    width: '100%', background: 'rgba(255,255,255,0.06)',
+    border: '1px solid rgba(255,255,255,0.12)', borderRadius: '2px',
+    padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit',
+    color: '#fff', outline: 'none'
+  }
+
+  const labelStyle = {
+    display: 'block', fontSize: '11px', letterSpacing: '0.15em',
+    textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '8px'
   }
 
   return (
@@ -53,24 +83,19 @@ export default function Comemore() {
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  {[
-                    { label: 'Seu nome', type: 'text', placeholder: 'João Silva' },
-                    { label: 'WhatsApp', type: 'tel', placeholder: '(21) 99999-0000' },
-                  ].map(field => (
-                    <div key={field.label}>
-                      <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>
-                        {field.label}
-                      </label>
-                      <input type={field.type} placeholder={field.placeholder} required style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '2px', padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit', color: '#fff', outline: 'none' }} />
-                    </div>
-                  ))}
+                  <div>
+                    <label style={labelStyle}>Seu nome</label>
+                    <input name="nome" type="text" placeholder="João Silva" required style={inputStyle} value={form.nome} onChange={handleChange} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>WhatsApp</label>
+                    <input name="whatsapp" type="tel" placeholder="(21) 99999-0000" required style={inputStyle} value={form.whatsapp} onChange={handleChange} />
+                  </div>
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>
-                    Tipo de evento
-                  </label>
-                  <select required style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '2px', padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit', color: '#fff', outline: 'none' }}>
+                  <label style={labelStyle}>Tipo de evento</label>
+                  <select name="tipo" required style={inputStyle} value={form.tipo} onChange={handleChange}>
                     <option value="">Selecione...</option>
                     {['Aniversário', 'Confraternização', 'Casamento / Noivado', 'Evento corporativo', 'Outro'].map(op => (
                       <option key={op} value={op}>{op}</option>
@@ -79,28 +104,29 @@ export default function Comemore() {
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  {[
-                    { label: 'Data do evento', type: 'date' },
-                    { label: 'Nº de convidados', type: 'number', placeholder: 'ex: 80' },
-                  ].map(field => (
-                    <div key={field.label}>
-                      <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>
-                        {field.label}
-                      </label>
-                      <input type={field.type} placeholder={field.placeholder} style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '2px', padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit', color: '#fff', outline: 'none' }} />
-                    </div>
-                  ))}
+                  <div>
+                    <label style={labelStyle}>Data do evento</label>
+                    <input name="data" type="date" style={inputStyle} value={form.data} onChange={handleChange} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Nº de convidados</label>
+                    <input name="convidados" type="number" placeholder="ex: 80" min="10" style={inputStyle} value={form.convidados} onChange={handleChange} />
+                  </div>
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>
-                    Mensagem
-                  </label>
-                  <textarea placeholder="Conte um pouco mais sobre o seu evento..." rows={4} style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '2px', padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit', color: '#fff', outline: 'none', resize: 'vertical' }} />
+                  <label style={labelStyle}>Mensagem</label>
+                  <textarea name="mensagem" placeholder="Conte um pouco mais sobre o seu evento..." rows={4} style={{ ...inputStyle, resize: 'vertical' }} value={form.mensagem} onChange={handleChange} />
                 </div>
 
-                <button type="submit" style={{ width: '100%', background: '#F5A623', color: '#fff', border: 'none', padding: '16px', fontSize: '13px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', fontFamily: 'inherit', borderRadius: '2px', cursor: 'pointer' }}>
-                  Solicitar orçamento
+                <button type="submit" disabled={loading} style={{
+                  width: '100%', background: loading ? '#C8841A' : '#F5A623',
+                  color: '#fff', border: 'none', padding: '16px',
+                  fontSize: '13px', fontWeight: 500, letterSpacing: '0.1em',
+                  textTransform: 'uppercase', fontFamily: 'inherit',
+                  borderRadius: '2px', cursor: loading ? 'not-allowed' : 'pointer'
+                }}>
+                  {loading ? 'Enviando...' : 'Solicitar orçamento'}
                 </button>
 
               </form>
