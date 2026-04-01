@@ -33,8 +33,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Obah! Bar & Ginkeria — São Gonçalo, RJ",
-    description: "Bar, Ginkeria e Casa de Shows em São Gonçalo, RJ.",
+    title: "Obah! Bar & Ginkeria",
+    description: "Bar, Ginkeria e Restaurante em São Gonçalo, RJ.",
   },
   metadataBase: new URL("https://www.obahoficial.com.br"),
 };
