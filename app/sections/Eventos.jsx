@@ -2,28 +2,44 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/app/lib/supabase'
-import { useReveal } from '@/app/hooks/useReveal'
 
 export default function Eventos() {
   const [eventos, setEventos] = useState([])
   const [loading, setLoading] = useState(true)
 
-  useReveal()
-
   useEffect(() => {
     async function fetchEventos() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('events')
         .select('*, ticket_types(*)')
         .eq('active', true)
         .order('created_at', { ascending: false })
         .limit(6)
 
+      console.log('eventos:', data, error)
       setEventos(data || [])
       setLoading(false)
     }
     fetchEventos()
   }, [])
+
+  useEffect(() => {
+    if (!loading && eventos.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      }, { threshold: 0.12 })
+
+      const elements = document.querySelectorAll('.reveal')
+      elements.forEach(el => observer.observe(el))
+
+      return () => observer.disconnect()
+    }
+  }, [loading, eventos])
 
   return (
     <section id="eventos" style={{ padding: '100px 40px', background: '#fff' }}>
@@ -48,7 +64,7 @@ export default function Eventos() {
         )}
 
         {!loading && eventos.length === 0 && (
-          <div className="reveal" style={{ textAlign: 'center', padding: '80px 24px', color: '#8C8278' }}>
+          <div style={{ textAlign: 'center', padding: '80px 24px', color: '#8C8278' }}>
             <div style={{ fontSize: '40px', marginBottom: '12px' }}>🎶</div>
             <p style={{ fontSize: '16px' }}>Em breve novos eventos por aqui.</p>
             <p style={{ fontSize: '14px', marginTop: '4px' }}>Siga nossas redes para não perder nada!</p>
@@ -57,13 +73,13 @@ export default function Eventos() {
 
         {!loading && eventos.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2px' }}>
-            {eventos.map((ev, i) => {
+            {eventos.map((ev) => {
               const menorPreco = ev.ticket_types?.length
                 ? Math.min(...ev.ticket_types.map(t => t.price))
                 : null
 
               return (
-                <div key={ev.id} className={`reveal reveal-delay-${Math.min(i + 1, 3)}`} style={{ background: '#FBF7EF', overflow: 'hidden' }}>
+                <div key={ev.id} style={{ background: '#FBF7EF', overflow: 'hidden' }}>
                   {ev.image_url
                     ? <img src={ev.image_url} alt={ev.name} style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }} />
                     : (
@@ -80,7 +96,7 @@ export default function Eventos() {
                       {ev.name}
                     </h3>
                     <p style={{ fontSize: '14px', color: '#8C8278', lineHeight: 1.6, marginBottom: '20px' }}>
-                      {ev.info_adicional || ''}
+                      {ev.info_adicional || ev.description || ''}
                     </p>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <div style={{ fontSize: '13px', color: '#8C8278' }}>
