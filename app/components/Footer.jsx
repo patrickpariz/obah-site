@@ -1,25 +1,6 @@
 export default function Footer() {
   return (
     <>
-      {/* Parceiros */}
-      <section style={{ background: '#fff', padding: '60px 40px', borderTop: '1px solid rgba(46,43,38,0.06)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <p style={{ textAlign: 'center', fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#8C8278', marginBottom: '36px' }}>
-            Nossos parceiros
-          </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '60px', flexWrap: 'wrap' }}>
-            {[
-              { src: 'https://obahoficial.com.br/wp-content/uploads/2025/07/logo_friboi_interna.png', alt: 'Friboi' },
-              { src: 'https://obahoficial.com.br/wp-content/uploads/2025/07/brahma-logo-0-1-2048x2048-2-1024x451.png', alt: 'Brahma' },
-              { src: 'https://obahoficial.com.br/wp-content/uploads/2025/07/logo_swift_interna_2-1.png', alt: 'Swift' },
-              { src: 'https://obahoficial.com.br/wp-content/uploads/2025/07/51-logo.jpg', alt: '51' },
-            ].map(logo => (
-              <img key={logo.alt} src={logo.src} alt={logo.alt} style={{ height: '36px', opacity: 0.4, filter: 'grayscale(1)', objectFit: 'contain' }} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer style={{ background: '#2E2B26', padding: '56px 40px 32px' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
