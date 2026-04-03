@@ -72,7 +72,7 @@ export default function Eventos() {
         )}
 
         {!loading && eventos.length > 0 && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
             {eventos.map((ev) => {
               const menorPreco = ev.ticket_types?.length
                 ? Math.min(...ev.ticket_types.map(t => t.price))
