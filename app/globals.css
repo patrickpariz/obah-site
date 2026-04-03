@@ -28,3 +28,10 @@ a {
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
 }
+@media (max-width: 768px) {
+  #home {
+    min-height: auto !important;
+    padding-top: 100px !important;
+    padding-bottom: 60px !important;
+  }
+}
