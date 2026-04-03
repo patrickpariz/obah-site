@@ -91,7 +91,7 @@ export default function Footer() {
               <span style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '36px', color: '#F5A623', display: 'block', marginBottom: '4px', lineHeight: 1 }}>Obah!</span>
               <span style={{ fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '20px', display: 'block' }}>Bar & Ginkeria</span>
               <p style={{ fontSize: '14px', fontWeight: 300, lineHeight: 1.7, color: 'rgba(255,255,255,0.5)', maxWidth: '280px' }}>
-                Eventos, momentos, memórias e encontros. Você merece o melhor — e a Obah entrega.
+                Eventos, momentos, e encontros. Você merece o melhor — e Obah entrega.
               </p>
             </div>
             <div>
