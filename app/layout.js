@@ -12,12 +12,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Obah! Bar & Ginkeria — São Gonçalo, RJ",
-  description: "Bar, Ginkeria e Casa de Shows em São Gonçalo, RJ. Eventos, momentos, memórias e encontros. Você merece o melhor!",
-  keywords: "bar, ginkeria, shows, eventos, São Gonçalo, RJ, ingressos, festa",
+  title: "Obah! Bar & Ginkeria - Sao Goncalo, RJ",
+  description: "Bar, Ginkeria e Casa de Shows em Sao Goncalo, RJ. Eventos, momentos, memorias e encontros. Voce merece o melhor!",
+  keywords: "bar, ginkeria, shows, eventos, Sao Goncalo, RJ, ingressos, festa",
   openGraph: {
-    title: "Obah! Bar & Ginkeria — São Gonçalo, RJ",
-    description: "Bar, Ginkeria e Casa de Shows em São Gonçalo, RJ. Eventos, momentos, memórias e encontros.",
+    title: "Obah! Bar & Ginkeria - Sao Goncalo, RJ",
+    description: "Bar, Ginkeria e Casa de Shows em Sao Goncalo, RJ. Eventos, momentos, memorias e encontros.",
     url: "https://www.obahoficial.com.br",
     siteName: "Obah!",
     locale: "pt_BR",
@@ -33,18 +33,57 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Obah! Bar & Ginkeria",
-    description: "Bar, Ginkeria e Restaurante em São Gonçalo, RJ.",
+    title: "Obah! Bar & Ginkeria - Sao Goncalo, RJ",
+    description: "Bar, Ginkeria e Casa de Shows em Sao Goncalo, RJ.",
   },
   metadataBase: new URL("https://www.obahoficial.com.br"),
 };
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "Obah! Bar & Ginkeria",
+  "image": "https://www.obahoficial.com.br/og-image.jpg",
+  "url": "https://www.obahoficial.com.br",
+  "telephone": "+5521993753021",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Francisco Portela, 2534",
+    "addressLocality": "Sao Goncalo",
+    "addressRegion": "RJ",
+    "postalCode": "24435-005",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -22.8268,
+    "longitude": -43.0539
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "reviewCount": "504"
+  },
+  "servesCuisine": "Bar, Ginkeria, Petiscos",
+  "priceRange": "R$80-100",
+  "sameAs": [
+    "https://instagram.com/obahginkeria",
+    "https://wa.me/5521993753021"
+  ]
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>
-  );
+  )
 }
