@@ -81,14 +81,14 @@ export default function Eventos() {
               return (
                 <div key={ev.id} style={{ background: '#FBF7EF', overflow: 'hidden' }}>
                   {ev.image_url
-                    ? <img src={ev.image_url} alt={ev.name} style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }} />
+                    ? <img src={ev.image_url} alt={ev.name} style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
                     : (
-                      <div style={{ width: '100%', height: '260px', background: '#F2EBD9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '48px' }}>
+                      <div style={{ width: '100%', height: '200px', background: '#F2EBD9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '48px' }}>
                         {ev.emoji || '🎶'}
                       </div>
                     )
                   }
-                  <div style={{ padding: '24px' }}>
+                  <div style={{ padding: '16px' }}>
                     <div style={{ display: 'inline-block', fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C8841A', background: '#FDE8B8', padding: '5px 10px', borderRadius: '2px', marginBottom: '12px' }}>
                       📅 {ev.date || 'Em breve'}
                     </div>
