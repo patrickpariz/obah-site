@@ -47,7 +47,7 @@ export default function Hero() {
         color: '#4A4540', marginBottom: '48px', lineHeight: 1.6,
         fontFamily: 'Georgia, serif', fontStyle: 'italic', letterSpacing: '0.02em'
         }}>
-        Você merece o melhor. Venha viver noites inesquecíveis na Obah!
+        Você merece o melhor. Venha viver momentos inesquecíveis na Obah!
         </p>
 
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
