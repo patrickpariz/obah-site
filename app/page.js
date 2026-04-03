@@ -5,6 +5,7 @@ import Eventos from './sections/Eventos'
 import Sobre from './sections/Sobre'
 import Comemore from './sections/Comemore'
 import Contato from './sections/Contato'
+import InstagramGrid from './sections/InstagramGrid'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Sobre />
         <Comemore />
         <Contato />
+        <InstagramGrid />
       </main>
       <Footer />
     </>
