@@ -43,10 +43,11 @@ export default function Hero() {
         </h1>
 
         <p style={{
-          fontSize: 'clamp(14px, 2vw, 18px)', fontWeight: 300,
-          color: '#4A4540', marginBottom: '48px', lineHeight: 1.6
+        fontSize: 'clamp(15px, 2vw, 20px)', fontWeight: 400,
+        color: '#4A4540', marginBottom: '48px', lineHeight: 1.6,
+        fontFamily: 'Georgia, serif', fontStyle: 'italic', letterSpacing: '0.02em'
         }}>
-          Você merece o melhor. Venha viver noites inesquecíveis na Obah!
+        Você merece o melhor. Venha viver noites inesquecíveis na Obah!
         </p>
 
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
