@@ -6,8 +6,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
       const sections = ['home', 'sobre', 'eventos', 'comemore', 'contato']
@@ -20,7 +25,11 @@ export default function Navbar() {
       }
     }
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const links = [
@@ -48,31 +57,35 @@ export default function Navbar() {
           <span style={{ fontSize: '8px', fontWeight: 300, letterSpacing: '0.2em', color: '#8C8278', textTransform: 'uppercase', display: 'block' }}>Bar & Ginkeria</span>
         </a>
 
-        <ul className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '28px', listStyle: 'none', margin: 0, padding: 0 }}>
-          {links.map(item => (
-            <li key={item.label}>
-              <a href={item.href} style={{ fontSize: '12px', fontWeight: 400, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', color: activeSection === item.id ? '#F5A623' : '#3D3D3D', borderBottom: activeSection === item.id ? '1.5px solid #F5A623' : '1.5px solid transparent', paddingBottom: '2px', transition: 'color 0.2s' }}>
-                {item.label}
+        {!isMobile && (
+          <ul style={{ display: 'flex', alignItems: 'center', gap: '28px', listStyle: 'none', margin: 0, padding: 0 }}>
+            {links.map(item => (
+              <li key={item.label}>
+                <a href={item.href} style={{ fontSize: '12px', fontWeight: 400, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', color: activeSection === item.id ? '#F5A623' : '#3D3D3D', borderBottom: activeSection === item.id ? '1.5px solid #F5A623' : '1.5px solid transparent', paddingBottom: '2px', transition: 'color 0.2s' }}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="https://ingressos.obahoficial.com.br" target="_blank" style={{ background: '#F5A623', color: '#fff', padding: '10px 20px', borderRadius: '2px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                Comprar ingressos
               </a>
             </li>
-          ))}
-          <li>
-            <a href="https://ingressos.obahoficial.com.br" target="_blank" style={{ background: '#F5A623', color: '#fff', padding: '10px 20px', borderRadius: '2px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-              Comprar ingressos
-            </a>
-          </li>
-        </ul>
+          </ul>
+        )}
 
-        <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center', display: 'none' }}>
-          <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
-          <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', opacity: menuOpen ? 0 : 1 }} />
-          <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
-        </button>
+        {isMobile && (
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
+            <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
+          </button>
+        )}
 
       </nav>
 
-      {menuOpen && (
-        <div style={{ position: 'fixed', top: '73px', left: 0, right: 0, zIndex: 99, background: 'rgba(251,247,239,0.98)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(245,166,35,0.15)', padding: '28px 24px 36px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      {isMobile && menuOpen && (
+        <div style={{ position: 'fixed', top: '72px', left: 0, right: 0, zIndex: 99, background: 'rgba(251,247,239,0.98)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(245,166,35,0.15)', padding: '28px 24px 36px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {links.map(item => (
             <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)} style={{ fontSize: '20px', fontWeight: 400, letterSpacing: '0.04em', textTransform: 'uppercase', textDecoration: 'none', color: activeSection === item.id ? '#F5A623' : '#2E2B26', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
               {item.label}
@@ -83,13 +96,6 @@ export default function Navbar() {
           </a>
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 768px) {
-          .nav-desktop { display: none !important; }
-          .nav-hamburger { display: flex !important; }
-        }
-      `}</style>
     </>
   )
 }
