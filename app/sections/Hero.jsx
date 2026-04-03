@@ -67,26 +67,6 @@ export default function Hero() {
           </a>
         </div>
       </div>
-
-      {/* Seta de scroll — visível em todas as telas */}
-      <div style={{
-        position: 'absolute', bottom: '32px', left: '50%',
-        transform: 'translateX(-50%)',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
-        animation: 'bounce 2s infinite',
-      }}>
-        <span style={{ fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#8C8278' }}>
-          Role
-        </span>
-        <div style={{ width: '1px', height: '40px', background: 'linear-gradient(to bottom, #F5A623, transparent)' }} />
-      </div>
-
-      <style>{`
-        @keyframes bounce {
-          0%, 100% { transform: translateX(-50%) translateY(0); }
-          50% { transform: translateX(-50%) translateY(6px); }
-        }
-      `}</style>
-    </section>
+      </section>
   )
 }
