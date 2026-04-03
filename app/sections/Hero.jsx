@@ -44,14 +44,14 @@ export default function Hero() {
 
         <p style={{
         fontSize: 'clamp(15px, 2vw, 20px)', fontWeight: 400,
-        color: '#4A4540', marginBottom: '48px', lineHeight: 1.6,
-        fontFamily: 'Georgia, serif', fontStyle: 'italic', letterSpacing: '0.02em'
+        color: '#4A4540', marginBottom: '0', lineHeight: 1.8,
+        fontFamily: 'Georgia, serif', fontStyle: 'italic', letterSpacing: '0.02em',
+        maxWidth: '400px', margin: '0 auto 48px', textAlign: 'center'
         }}>
-        
         Você merece o melhor.<br />
         Venha viver momentos inesquecíveis na Obah!
         </p>
-
+       
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a href="#eventos" style={{
             background: '#F5A623', color: '#fff', padding: '15px 36px',
