@@ -63,7 +63,7 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>
+        <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center', display: 'none' }}>
           <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
           <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', opacity: menuOpen ? 0 : 1 }} />
           <span style={{ display: 'block', width: '22px', height: '2px', background: '#3D3D3D', transition: 'all 0.3s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
@@ -79,7 +79,7 @@ export default function Navbar() {
             </a>
           ))}
           <a href="https://ingressos.obahoficial.com.br" target="_blank" onClick={() => setMenuOpen(false)} style={{ background: '#F5A623', color: '#fff', padding: '16px 22px', borderRadius: '2px', fontSize: '13px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', textAlign: 'center', marginTop: '8px' }}>
-            Comprar ingressoss
+            Comprar ingressos
           </a>
         </div>
       )}
