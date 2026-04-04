@@ -37,6 +37,7 @@ export default function Navbar() {
     { label: 'Eventos', href: '#eventos', id: 'eventos' },
     { label: 'Comemore', href: '#comemore', id: 'comemore' },
     { label: 'Contato', href: '#contato', id: 'contato' },
+    { label: 'Cardápio', href: '/cardapio', id: 'cardapio' },
   ]
 
   return (
