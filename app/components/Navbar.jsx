@@ -53,9 +53,12 @@ export default function Navbar() {
         transition: 'box-shadow 0.3s',
       }}>
 
-        <a href="#home" style={{ textDecoration: 'none', flexShrink: 0 }}>
-          <span style={{ fontFamily: 'Georgia, serif', fontSize: '26px', fontStyle: 'italic', color: '#F5A623', lineHeight: 1, display: 'block' }}>Obah!</span>
-          <span style={{ fontSize: '8px', fontWeight: 300, letterSpacing: '0.2em', color: '#8C8278', textTransform: 'uppercase', display: 'block' }}>Bar & Ginkeria</span>
+        <a href="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <img 
+        src="https://vuujmapzqmdmphnvntbt.supabase.co/storage/v1/object/public/assets/Logotipo%20Obah!%20Final-White%20(1).png"
+        alt="Obah! Bar & Ginkeria"
+        style={{ height: '48px', width: 'auto', display: 'block' }}
+        />
         </a>
 
         {!isMobile && (

@@ -46,7 +46,7 @@ export default function Cardapio() {
               Obah! Bar & Ginkeria
             </span>
             <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: 700, color: '#fff', letterSpacing: '-2px', lineHeight: 1 }}>
-              Nosso <em style={{ color: '#F5A623', fontWeight: 400 }}>cardapio</em>
+              Nosso <em style={{ color: '#F5A623', fontWeight: 400 }}>cardápio</em>
             </h1>
           </div>
         </div>
