@@ -42,11 +42,11 @@ export default function Comemore() {
   }
 
   return (
-    <section id="comemore" style={{ padding: '100px 40px', background: '#2E2B26', position: 'relative', overflow: 'hidden' }}>
+    <section id="comemore" style={{ padding: '80px 24px', background: '#2E2B26', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: '-120px', right: '-120px', width: '400px', height: '400px', borderRadius: '50%', border: '80px solid rgba(245,166,35,0.08)' }} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'start' }}>
 
           <div className="reveal">
             <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(245,166,35,0.8)', marginBottom: '16px', display: 'block' }}>
@@ -82,7 +82,7 @@ export default function Comemore() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
                   <div>
                     <label style={labelStyle}>Seu nome</label>
                     <input name="nome" type="text" placeholder="João Silva" required style={inputStyle} value={form.nome} onChange={handleChange} />
@@ -101,7 +101,7 @@ export default function Comemore() {
                     ))}
                   </select>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
                   <div>
                     <label style={labelStyle}>Data do evento</label>
                     <input name="data" type="date" style={inputStyle} value={form.data} onChange={handleChange} />
