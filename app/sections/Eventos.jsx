@@ -87,7 +87,7 @@ export default function Eventos() {
               return (
                 <div
                   key={ev.id}
-                  onClick={() => window.open(`https://ingressos.obahoficial.com.br/eventos/${ev.slug}`, '_blank')}
+                 onClick={() => window.location.href = `https://ingressos.obahoficial.com.br/eventos/${ev.slug}`}
                   style={{ background: '#FBF7EF', overflow: 'hidden', borderRadius: '4px', position: 'relative', cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(46,43,38,0.12)' }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}
@@ -124,8 +124,7 @@ export default function Eventos() {
                         }
                       </div>
                       <span 
-  onClick={e => { e.stopPropagation(); window.open(`https://ingressos.obahoficial.com.br/eventos/${ev.slug}`, '_blank'); }}
-  style={{ background: '#F5A623', color: '#fff', padding: '10px 20px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', borderRadius: '2px', cursor: 'pointer' }}>
+onClick={e => { e.stopPropagation(); window.location.href = `https://ingressos.obahoficial.com.br/eventos/${ev.slug}`; }}  style={{ background: '#F5A623', color: '#fff', padding: '10px 20px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', borderRadius: '2px', cursor: 'pointer' }}>
   Ingressos
 </span>
                     </div>
