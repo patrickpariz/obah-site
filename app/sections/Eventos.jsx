@@ -1,8 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabaseIngressorio } from '@/app/lib/supabaseIngressorio'
-
+import { createClient } from '@supabase/supabase-js'
+const supabaseIngressorio = createClient(
+  'https://vuujmapzqmdmphnvntbt.supabase.co',
+  process.env.NEXT_PUBLIC_INGRESSORIO_ANON_KEY
+)
 function WppIcon() {
   return (
     <svg viewBox="0 0 24 24" style={{ width: '18px', height: '18px', fill: 'white' }}>
@@ -17,7 +20,7 @@ export default function Eventos() {
 
   useEffect(() => {
     async function fetchEventos() {
-      const { data } = await supabase
+      const { data } = await supabaseIngressorio  
         .from('events')
         .select('*, ticket_types(*)')
         .eq('active', true)
