@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabase } from '@/app/lib/supabase'
+import { supabaseIngressorio } from '@/app/lib/supabaseIngressorio'
 
 function WppIcon() {
   return (
