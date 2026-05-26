@@ -35,7 +35,7 @@ export default function Contato() {
             <div>
               <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '16px', display: 'block' }}>Onde estamos</span>
               <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: '#2E2B26', letterSpacing: '-1px' }}>
-                Vem pra <em style={{ color: '#F5A623', fontWeight: 400 }}>Obah!</em>
+                Vem pro <em style={{ color: '#F5A623', fontWeight: 400 }}>Obah!</em>
               </h2>
             </div>
             <div>
