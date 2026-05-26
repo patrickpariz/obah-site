@@ -86,7 +86,7 @@ export default function Footer() {
       {/* Footer */}
       <footer style={{ background: '#2E2B26', padding: '56px 40px 32px' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '60px', paddingBottom: '48px', borderBottom: '1px solid rgba(255,255,255,0.08)', marginBottom: '32px' }}>
+         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', paddingBottom: '48px', borderBottom: '1px solid rgba(255,255,255,0.08)', marginBottom: '32px' }}>
             <div>
               <span style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '36px', color: '#F5A623', display: 'block', marginBottom: '4px', lineHeight: 1 }}>Obah!</span>
               <span style={{ fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '20px', display: 'block' }}>Bar & Ginkeria</span>

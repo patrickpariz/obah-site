@@ -30,8 +30,7 @@ export default function Contato() {
   return (
     <section id="contato" style={{ padding: '100px 40px', background: '#F2EBD9' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '60px', alignItems: 'start' }}>
           <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
             <div>
               <span style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#F5A623', marginBottom: '16px', display: 'block' }}>Onde estamos</span>
@@ -96,7 +95,7 @@ export default function Contato() {
                 <input name="nome" type="text" placeholder="Seu nome" required onChange={handleChange} value={form.nome} style={{ width: '100%', background: '#fff', border: '1px solid rgba(46,43,38,0.12)', borderRadius: '2px', padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit', color: '#2E2B26', outline: 'none' }} />
                 <input name="email" type="email" placeholder="Seu e-mail" required onChange={handleChange} value={form.email} style={{ width: '100%', background: '#fff', border: '1px solid rgba(46,43,38,0.12)', borderRadius: '2px', padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit', color: '#2E2B26', outline: 'none' }} />
                 <textarea name="mensagem" placeholder="Sua mensagem..." rows={4} required onChange={handleChange} value={form.mensagem} style={{ width: '100%', background: '#fff', border: '1px solid rgba(46,43,38,0.12)', borderRadius: '2px', padding: '14px 16px', fontSize: '14px', fontFamily: 'inherit', color: '#2E2B26', outline: 'none', resize: 'vertical' }} />
-                <button type="submit" disabled={loading} style={{ background: loading ? '#C8841A' : '#F5A623', color: '#fff', border: 'none', padding: '14px 28px', fontSize: '13px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: 'inherit', borderRadius: '2px', cursor: loading ? 'not-allowed' : 'pointer', alignSelf: 'flex-start' }}>
+                <button type="submit" disabled={loading} style={{ background: loading ? '#C8841A' : '#F5A623', color: '#fff', border: 'none', padding: '14px 28px', fontSize: '13px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: 'inherit', borderRadius: '2px', cursor: loading ? 'not-allowed' : 'pointer', width: '100%' }}>
                   {loading ? 'Enviando...' : 'Enviar mensagem'}
                 </button>
               </form>
