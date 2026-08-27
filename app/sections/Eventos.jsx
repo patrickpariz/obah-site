@@ -21,7 +21,7 @@ export default function Eventos() {
         .from('events')
         .select('*, ticket_types(*)')
         .eq('active', true)
-        .order('created_at', { ascending: false })
+        .order('date', { ascending: true })
         .limit(6)
       setEventos(data || [])
       setLoading(false)
@@ -75,22 +75,17 @@ export default function Eventos() {
 
         {!loading && eventos.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
-            {eventos.map((ev) => {
-              const menorPreco = ev.ticket_types?.length
-                ? Math.min(...ev.ticket_types.map(t => t.price))
-                : null
-
+            {eventos.map(function(ev) {
               const msgWpp = encodeURIComponent(
-                '🎉 ' + ev.name + '\n📅 ' + (ev.date || 'Em breve') + '\n📍 ' + (ev.location || 'Obah! Bar & Ginkeria') + '\n\nCompre seu ingresso: https://ingressos.obahoficial.com.br'
+                'Vem pra Obah! ' + ev.name + ' - ' + (ev.date || 'Em breve') + '. Compre seu ingresso: https://ingressos.obahoficial.com.br'
               )
 
               return (
                 <div
                   key={ev.id}
-                  onClick={() => window.open('https://ingressos.obahoficial.com.br', '_blank')}
-                  style={{ background: '#FBF7EF', overflow: 'hidden', borderRadius: '4px', position: 'relative', cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(46,43,38,0.12)' }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}
+                  style={{ background: '#FBF7EF', overflow: 'hidden', borderRadius: '4px', position: 'relative', transition: 'transform 0.2s, box-shadow 0.2s' }}
+                  onMouseEnter={function(e) { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(46,43,38,0.12)' }}
+                  onMouseLeave={function(e) { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}
                 >
                   {ev.image_url
                     ? <img src={ev.image_url} alt={ev.name} style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
@@ -100,32 +95,34 @@ export default function Eventos() {
                   <a
                     href={'https://wa.me/?text=' + msgWpp}
                     target="_blank"
-                    onClick={e => e.stopPropagation()}
+                    onClick={function(e) { e.stopPropagation() }}
                     style={{ position: 'absolute', top: '12px', right: '12px', width: '36px', height: '36px', background: '#25D366', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.2)', textDecoration: 'none' }}
                   >
                     <WppIcon />
                   </a>
 
                   <div style={{ padding: '16px' }}>
-                    <div style={{ display: 'inline-block', fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C8841A', background: '#FDE8B8', padding: '5px 10px', borderRadius: '2px', marginBottom: '12px' }}>
+                    <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C8841A', background: '#FDE8B8', padding: '5px 10px', borderRadius: '2px', marginBottom: '10px', display: 'inline-block' }}>
                       📅 {ev.date || 'Em breve'}
                     </div>
-                    <h3 style={{ fontFamily: 'Georgia, serif', fontSize: '20px', fontWeight: 700, color: '#2E2B26', marginBottom: '8px', lineHeight: 1.2 }}>
+                    <h3 style={{ fontFamily: 'Georgia, serif', fontSize: '18px', fontWeight: 700, color: '#2E2B26', marginBottom: '14px', lineHeight: 1.2 }}>
                       {ev.name}
                     </h3>
-                    <p style={{ fontSize: '13px', color: '#8C8278', lineHeight: 1.6, marginBottom: '16px' }}>
-                      {ev.info_adicional || ev.description || ''}
-                    </p>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <div style={{ fontSize: '13px', color: '#8C8278' }}>
-                        {menorPreco
-                          ? <span>A partir de <strong style={{ fontSize: '16px', color: '#2E2B26' }}>R$ {menorPreco.toFixed(2).replace('.', ',')}</strong></span>
-                          : <strong style={{ fontSize: '16px', color: '#2E2B26' }}>Gratuito</strong>
-                        }
-                      </div>
-                      <span style={{ background: '#F5A623', color: '#fff', padding: '10px 20px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', borderRadius: '2px' }}>
-                        Ingressos
-                      </span>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <a
+                        href="https://ingressos.obahoficial.com.br"
+                        target="_blank"
+                        style={{ flex: 1, background: '#F5A623', color: '#fff', padding: '10px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', textAlign: 'center' }}
+                      >
+                        Comprar agora
+                      </a>
+                      <a
+                        href="https://ingressos.obahoficial.com.br"
+                        target="_blank"
+                        style={{ flex: 1, background: 'transparent', color: '#2E2B26', padding: '10px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', textAlign: 'center', border: '1.5px solid #2E2B26' }}
+                      >
+                        Saiba mais
+                      </a>
                     </div>
                   </div>
                 </div>
