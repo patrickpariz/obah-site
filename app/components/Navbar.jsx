@@ -32,13 +32,13 @@ export default function Navbar() {
     }
   }, [])
 
-  const links = [
-    { label: 'Sobre', href: '#sobre', id: 'sobre' },
-    { label: 'Eventos', href: '#eventos', id: 'eventos' },
-    { label: 'Comemore', href: '#comemore', id: 'comemore' },
-    { label: 'Contato', href: '#contato', id: 'contato' },
-    { label: 'Cardápio', href: '/cardapio', id: 'cardapio' },
-  ]
+const links = [
+  { label: 'Sobre', href: '/#sobre', id: 'sobre' },
+  { label: 'Eventos', href: '/#eventos', id: 'eventos' },
+  { label: 'Comemore', href: '/#comemore', id: 'comemore' },
+  { label: 'Contato', href: '/#contato', id: 'contato' },
+  { label: 'Cardápio', href: '/cardapio', id: 'cardapio' },
+]
 
   return (
     <>
