@@ -24,7 +24,7 @@ export default function Eventos() {
         .from('events')
         .select('*, ticket_types(*)')
         .eq('active', true)
-        .order('created_at', { ascending: false })
+.order('date', { ascending: true })
         .limit(6)
       setEventos(data || [])
       setLoading(false)
