@@ -76,8 +76,12 @@ export default function Eventos() {
         {!loading && eventos.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
             {eventos.map(function(ev) {
+              const linkEvento = ev.slug
+                ? 'https://ingressos.obahoficial.com.br/eventos/' + ev.slug
+                : 'https://ingressos.obahoficial.com.br'
+
               const msgWpp = encodeURIComponent(
-                'Vem pra Obah! ' + ev.name + ' - ' + (ev.date || 'Em breve') + '. Compre seu ingresso: https://ingressos.obahoficial.com.br'
+                'Vem pra Obah! ' + ev.name + ' - ' + (ev.date || 'Em breve') + '. Compre seu ingresso: ' + linkEvento
               )
 
               return (
@@ -110,14 +114,14 @@ export default function Eventos() {
                     </h3>
                     <div style={{ display: 'flex', gap: '8px' }}>
                       <a
-                        href="https://ingressos.obahoficial.com.br"
+                        href={linkEvento}
                         target="_blank"
                         style={{ flex: 1, background: '#F5A623', color: '#fff', padding: '10px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', textAlign: 'center' }}
                       >
                         Comprar agora
                       </a>
                       <a
-                        href="https://ingressos.obahoficial.com.br"
+                        href={linkEvento}
                         target="_blank"
                         style={{ flex: 1, background: 'transparent', color: '#2E2B26', padding: '10px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', textAlign: 'center', border: '1.5px solid #2E2B26' }}
                       >
